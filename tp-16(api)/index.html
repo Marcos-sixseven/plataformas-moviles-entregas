@@ -3,231 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MotorAPI Explorer - Catálogo Avanzado</title>
+    <title>MotorApi</title>
     <style>
-        :root {
-            --primary: #1e293b;
-            --accent: #2563eb;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #334155;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #64748b;
-            margin-bottom: 30px;
-            font-size: 15px;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 14px 20px;
-            font-size: 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        .search-box:focus {
-            border-color: var(--accent);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .loading {
-            text-align: center;
-            font-style: italic;
-            color: #d97706;
-            font-size: 18px;
-            margin: 40px 0;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            padding: 20px;
-            border-radius: 12px;
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 20px -8px rgba(37, 99, 235, 0.15);
-            border-color: var(--accent);
-        }
-
-        .card h3 {
-            margin: 0 0 8px 0;
-            color: var(--primary);
-            font-size: 18px;
-        }
-
-        .card p {
-            margin: 0 0 15px 0;
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        .btn {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 14px;
-            transition: background-color 0.2s;
-            text-align: center;
-        }
-
-        .btn:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* Estilos del Modal emergente */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal {
-            background: white;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .modal-header h2 {
-            margin: 0;
-            color: var(--primary);
-            font-size: 20px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #64748b;
-        }
-
-        .modal-body {
-            overflow-y: auto;
-            flex-grow: 1;
-        }
-
-        .model-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .model-item {
-            padding: 12px 15px;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            justify-content: space-between;
-            font-size: 15px;
-        }
-
-        .model-item:last-child {
-            border-bottom: none;
-        }
+        body { font-family: sans-serif; max-width: 800px; margin: 20px auto; padding: 0 10px; color: #333; }
+        input { width: 100%; padding: 10px; font-size: 16px; box-sizing: border-box; margin-bottom: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+        .card { border: 1px solid #ccc; padding: 10px; background: #f9f9f9; display: flex; flex-direction: column; justify-content: space-between; }
+        button { padding: 8px 12px; background: #0066cc; color: #fff; border: none; cursor: pointer; margin-top: 8px; }
+        button:hover { background: #004999; }
+        .loading { font-style: italic; color: #666; margin: 20px 0; }
+        
+        /* Modal simple */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: #fff; padding: 20px; width: 90%; max-width: 500px; max-height: 80vh; overflow-y: auto; border-radius: 4px; }
+        .model-item { padding: 8px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1> MotorAPI Explorer </h1>
-        <div class="subtitle">Conectado a la API Pública de la NHTSA con consultas relacionales por ID</div>
+    <h2><center>Motor consulta API</center></h2>
+    <input type="text" id="searchInput" placeholder="Buscar marca..." oninput="filtrarMarcas()">
 
-        <input type="text" id="searchInput" class="search-box" placeholder="Busca una marca (ej. Ford, Toyota, Honda, Yamaha)..." oninput="filtrarMarcas()">
+    <div id="loading" class="loading">Cargando datos...</div>
+    <div id="results" class="grid"></div>
 
-        <div id="loading" class="loading">Cargando base de datos global de fabricantes... 🌐</div>
-        <div id="results" class="grid"></div>
-    </div>
-
-    <!-- Modal emergente para mostrar los modelos -->
     <div id="modalOverlay" class="modal-overlay" onclick="cerrarModalFuera(event)">
         <div class="modal">
-            <div class="modal-header">
-                <h2 id="modalTitle">Modelos de la Marca</h2>
-                <button class="close-btn" onclick="cerrarModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="modalLoading" class="loading" style="display:none;">Consultando modelos específicos... ⚙️</div>
-                <ul id="modelList" class="model-list"></ul>
-            </div>
+            <h3 id="modalTitle">Modelos</h3>
+            <div id="modalLoading" class="loading" style="display:none;">Cargando modelos...</div>
+            <ul id="modelList" style="list-style:none; padding:0;"></ul>
+            <button onclick="cerrarModal()">Cerrar</button>
         </div>
     </div>
 
     <script>
         let todasLasMarcas = [];
 
-        // 1. Petición inicial para obtener todas las marcas
         async function obtenerDatosAPI() {
             const url = 'https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json';
             try {
@@ -236,20 +48,19 @@
                 todasLasMarcas = data.Results;
                 
                 document.getElementById('loading').style.display = 'none';
-                mostrarEnPantalla(todasLasMarcas.slice(0, 20)); // Mostramos las primeras 20 por defecto
+                mostrarEnPantalla(todasLasMarcas.slice(0, 20));
             } catch (error) {
-                document.getElementById('loading').innerHTML = '<span style="color:red">❌ Error de conexión con la API externa.</span>';
+                document.getElementById('loading').innerHTML = '<span style="color:red">Error de conexión con la API.</span>';
                 console.error(error);
             }
         }
 
-        // 2. Renderizar marcas en tarjetas con botón interactivo
         function mostrarEnPantalla(marcas) {
             const resultsDiv = document.getElementById('results');
             resultsDiv.innerHTML = '';
 
             if (marcas.length === 0) {
-                resultsDiv.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #64748b;">No se encontraron marcas.</p>';
+                resultsDiv.innerHTML = '<p>No se encontraron marcas.</p>';
                 return;
             }
 
@@ -258,23 +69,21 @@
                 card.className = 'card';
                 card.innerHTML = `
                     <div>
-                        <h3>${marca.Make_Name}</h3>
-                        <p>ID Fabricante: <strong>${marca.Make_ID}</strong></p>
+                        <strong>${marca.Make_Name}</strong><br>
+                        <small>ID: ${marca.Make_ID}</small>
                     </div>
-                    <button class="btn" onclick="verModelos(${marca.Make_ID}, '${marca.Make_Name.replace(/'/g, "\\'")}')">Ver Modelos 🔍</button>
+                    <button onclick="verModelos(${marca.Make_ID}, '${marca.Make_Name.replace(/'/g, "\\'")}')">Ver Modelos</button>
                 `;
                 resultsDiv.appendChild(card);
             });
         }
 
-        // 3. Filtrar buscador en tiempo real
         function filtrarMarcas() {
             const texto = document.getElementById('searchInput').value.toLowerCase();
             const filtradas = todasLasMarcas.filter(m => m.Make_Name.toLowerCase().includes(texto));
             mostrarEnPantalla(filtradas.slice(0, 20));
         }
 
-        // 4. PETICIÓN AVANZADA: Consultar modelos específicos usando el ID de la marca
         async function verModelos(makeId, makeName) {
             const modalOverlay = document.getElementById('modalOverlay');
             const modalTitle = document.getElementById('modalTitle');
@@ -286,7 +95,6 @@
             modalLoading.style.display = 'block';
             modalOverlay.classList.add('active');
 
-            // URL del segundo endpoint de la API usando el ID relacional
             const urlModelos = `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeId/${makeId}?format=json`;
 
             try {
@@ -295,29 +103,27 @@
                 modalLoading.style.display = 'none';
 
                 if (data.Results.length === 0) {
-                    modelList.innerHTML = '<p style="text-align:center; color:#64748b;">No hay modelos registrados para esta marca en el sistema.</p>';
+                    modelList.innerHTML = '<p>No hay modelos registrados.</p>';
                     return;
                 }
 
-                // Pintar los modelos obtenidos
                 data.Results.forEach(modelo => {
                     const li = document.createElement('li');
                     li.className = 'model-item';
                     li.innerHTML = `
-                        <span> <strong>${modelo.Model_Name}</strong></span>
-                        <span style="color: #64748b; font-size: 13px;">ID: ${modelo.Model_ID}</span>
+                        <span>${modelo.Model_Name}</span>
+                        <small>ID: ${modelo.Model_ID}</small>
                     `;
                     modelList.appendChild(li);
                 });
 
             } catch (error) {
                 modalLoading.style.display = 'none';
-                modelList.innerHTML = '<p style="text-align:center; color:red;">Error al cargar los modelos desde la API.</p>';
+                modelList.innerHTML = '<p style="color:red;">Error al cargar los modelos.</p>';
                 console.error(error);
             }
         }
 
-        // Funciones para cerrar el modal
         function cerrarModal() {
             document.getElementById('modalOverlay').classList.remove('active');
         }
@@ -328,7 +134,6 @@
             }
         }
 
-        // Inicializar app
         obtenerDatosAPI();
     </script>
 </body>
